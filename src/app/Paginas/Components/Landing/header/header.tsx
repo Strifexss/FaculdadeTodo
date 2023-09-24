@@ -21,7 +21,7 @@ export default function HeaderLanding({buttonsFunctionAdicionar}:Props) {
                 </div>
             </div>
             <section className="w-full flex justify-between items-center">
-                <InputTexto Tamanho="Compacto" placeholder="Pesquisar" />
+                <InputTexto Nome="Pesquisar" Tamanho="Compacto" placeholder="Pesquisar" />
                 <section className="flex flex-row justify-center bg-[#2180D6] rounded-3xl">
                     <ButtonsHeader Click={buttonsFunctionAdicionar} texto="Adicionar"/>
                     <ButtonsHeader texto="Filtrar"/>
