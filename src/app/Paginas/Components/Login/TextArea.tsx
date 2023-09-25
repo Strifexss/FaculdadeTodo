@@ -14,8 +14,8 @@ export default function TextArea() {
                 </h1>
             </div>
             <div className="w-full flex flex-col justify-center items-center gap-4">
-                <InputTexto Tamanho="full" Nome="Email" Escuro placeholder="Insira o seu Email"/>
-                <InputTexto Tamanho="full" Nome="Senha" Escuro placeholder="Insira a sua Senha"/>
+                <InputTexto Tamanho="Compacto" Nome="Email" placeholder="Insira o seu Email"/>
+                <InputTexto Tamanho="Compacto" Nome="Senha" placeholder="Insira a sua Senha"/>
             </div>
             <div className="w-full flex flex-row justify-between items-center">
                 <h1 className="text-gray-400 hover:text-white cursor-pointer">

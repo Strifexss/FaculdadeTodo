@@ -3,14 +3,15 @@ interface Props {
     Escuro?: boolean,
     handleChangeValue?: (event: React.ChangeEvent<HTMLInputElement>) => void,
     Tamanho: "full" | "Compacto",
-    Nome: string
+    Nome: string,
+    LabelColor: "Black" | "White"
 }
 
-export default function InputTexto({placeholder, Escuro, handleChangeValue, Tamanho, Nome}:Props) {
+export default function InputTexto({placeholder, Escuro, handleChangeValue, Tamanho, Nome, LabelColor}:Props) {
     
     return(
         <div className="flex flex-col gap-2">
-              <label className="font-semibold" 
+              <label className={`font-semibold ${LabelColor === "Black" ? "text-black" : "text-white"}`} 
               htmlFor={Nome}>
                 {Nome}
               </label>

@@ -10,7 +10,7 @@ import HeaderLanding from "./header/header";
 export default function Main() {
 
     const [todos, setTodos] = useState<ITodos[]>([{
-        nome: "Testeee",
+        nome: "Exemplo",
         grupo: [
             {
                 nome: "Meet Ema",

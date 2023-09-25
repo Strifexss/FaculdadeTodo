@@ -41,7 +41,7 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
                 </button>
             </div>
             <div className="w-full px-6">
-                <InputTexto Tamanho="full" Nome="Nome do Grupo" handleChangeValue={handleChange} placeholder="Insira o nome do Grupo"/>
+                <InputTexto LabelColor="Black" Tamanho="full" Nome="Nome do Grupo" handleChangeValue={handleChange} placeholder="Insira o nome do Grupo"/>
             </div>
             <div className="w-full h-[5rem] bg-gray-200 flex justify-end items-center px-6">
                 <button className="text-white h-[3rem] font-bold p-2 rounded-md bg-AzulPadrao" onClick={() => Adicionar()}>
