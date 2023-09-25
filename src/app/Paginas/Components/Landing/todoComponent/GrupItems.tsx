@@ -1,12 +1,27 @@
 import IITemTodo from "@/app/models/ItemTodo"
 import { useState } from "react"
 import {Check} from "lucide-react"
-export default function GrupsItems(Item:IITemTodo) {
+import {motion} from "framer-motion"
+
+interface Props {
+    ModificarModal: React.Dispatch<React.SetStateAction<IITemTodo | null>>;
+    Item:IITemTodo
+}
+
+export default function GrupsItems({Item, ModificarModal}:Props) {
 
     const [complete, setComplete] = useState(false)
 
+    function HandleModalInfos() {
+        ModificarModal(Item)
+    }
+
     return(
-        <div className="hover:bg-gray-100 border-gray-100 border-b-2 w-full h-[5rem] flex flex-row items-center">
+        <motion.div onClick={() => HandleModalInfos()}
+        initial={{x: "-10"}}
+        animate={{x: 0}}
+        transition={{duration: 0.1}}    
+        className="hover:bg-gray-100 border-gray-100 border-b-2 w-full h-[5rem] flex flex-row items-center">
             <div className="w-[6px] bg-[#67a2fa] h-full"/>
             <div className="flex w-full h-full justify-between items-center py-4 px-6 ">
                 <div className="flex flex-col justify-center gap-2">
@@ -24,6 +39,6 @@ export default function GrupsItems(Item:IITemTodo) {
                     }
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }

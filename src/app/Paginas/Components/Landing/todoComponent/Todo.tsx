@@ -4,14 +4,16 @@ import IITemTodo from "@/app/models/ItemTodo"
 import adicionarNovoObjeto from "@/app/hooks/TodoComponent/useAdicionarNovoItem";
 import {Trash, Plus} from "lucide-react"
 import useExcluirGrupo from "@/app/hooks/TodoComponent/setExcluirGrupo";
+import {motion} from "framer-motion"
 
 interface Props {
     Item: ITodos,
     setTodos: React.Dispatch<React.SetStateAction<ITodos[]>>;
+    ModificarModal: React.Dispatch<React.SetStateAction<IITemTodo | null>>;
     ArrayTodos?: ITodos[]
 }
 
-export default function TodoComponent({Item, setTodos}:Props) {
+export default function TodoComponent({Item, setTodos, ModificarModal}:Props) {
 
     function add() {
         const novoObjeto: IITemTodo = {
@@ -25,7 +27,12 @@ export default function TodoComponent({Item, setTodos}:Props) {
     const ExcluirGrupo = () => useExcluirGrupo({nomeTodo: Item.nome, setTodos: setTodos})
 
     return(
-        <div className="w-[20rem] h-[30rem] bg-white rounded-xl flex flex-col items-center cursor-pointer shadow-xl">
+        <motion.div 
+        initial={{scale: 0.5}}
+        animate={{scale: 1}}
+        transition={{duration: 0.2}}
+        exit={{scale: 0.5}}
+        className="w-[20rem] h-[30rem] bg-white rounded-xl flex flex-col items-center cursor-pointer shadow-xl">
             <div className="w-full h-[5rem] bg-AzulPadrao rounded-t-xl flex justify-between items-center px-6">
                 <h1 className="text-white text-[1.2rem] font-semibold">
                     <h1>{Item?.nome}</h1>
@@ -35,7 +42,7 @@ export default function TodoComponent({Item, setTodos}:Props) {
                 {   
                     Item.grupo.map(items => {
                         return(
-                            <GrupsItems key={items.nome} nome={items.nome} data={items.data} complete={false} />
+                            <GrupsItems ModificarModal={ModificarModal} key={items.nome} Item={items} />
                         )
                     })
                 }
@@ -54,6 +61,6 @@ export default function TodoComponent({Item, setTodos}:Props) {
                     className="rounded-[50%] border-2 border-AzulPadrao "/>
                 </button>
             </div>
-        </div>
+        </motion.div>
     )
 }
