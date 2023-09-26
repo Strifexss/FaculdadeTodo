@@ -19,7 +19,7 @@ export default function TextArea() {
             </div>
             <div className="w-full flex flex-row justify-between items-center">
                 <h1 className="text-gray-400 hover:text-white cursor-pointer">
-                    Esqueceu a senha?
+                    Esqueceu a senhaa?
                 </h1>
                 <button onClick={() => Logar()} 
                 className="bg-[#F9D88B] w-[8rem] p-2 justify-center items-center flex rounded-md font-semibold">
