@@ -6,14 +6,15 @@ interface Props {
     todos: ITodos[] | null,
     setTodos: React.Dispatch<React.SetStateAction<ITodos[]>>;
     ModificarModal: React.Dispatch<React.SetStateAction<IITemTodo | null>>;
+    handleModalInfoVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function AreaTodos({todos, setTodos, ModificarModal}:Props) {
+export default function AreaTodos({todos, setTodos, ModificarModal, handleModalInfoVisibility}:Props) {
     return(
-        <div className="w-full h-full flex flex-row justify-center gap-6 flex-wrap overflow-y-scroll px-8">
+        <div className="w-full h-full flex flex-row justify-center gap-6 flex-wrap px-8">
         { todos?.map(todo => {
             return(
-                <TodoComponent  ModificarModal={ModificarModal} setTodos={setTodos} Item={todo} key={todo.nome}/>
+                <TodoComponent handleModalInfoVisibility={handleModalInfoVisibility}  ModificarModal={ModificarModal} setTodos={setTodos} Item={todo} key={todo.nome}/>
             )
         })
         }

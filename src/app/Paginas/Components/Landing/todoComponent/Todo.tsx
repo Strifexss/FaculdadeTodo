@@ -10,10 +10,11 @@ interface Props {
     Item: ITodos,
     setTodos: React.Dispatch<React.SetStateAction<ITodos[]>>;
     ModificarModal: React.Dispatch<React.SetStateAction<IITemTodo | null>>;
-    ArrayTodos?: ITodos[]
+    ArrayTodos?: ITodos[],
+    handleModalInfoVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function TodoComponent({Item, setTodos, ModificarModal}:Props) {
+export default function TodoComponent({Item, setTodos, ModificarModal, handleModalInfoVisibility}:Props) {
 
     function add() {
         const novoObjeto: IITemTodo = {
@@ -42,7 +43,7 @@ export default function TodoComponent({Item, setTodos, ModificarModal}:Props) {
                 {   
                     Item.grupo.map(items => {
                         return(
-                            <GrupsItems ModificarModal={ModificarModal} key={items.nome} Item={items} />
+                            <GrupsItems handleModalItemVisibility={handleModalInfoVisibility} ModificarModal={ModificarModal} key={items.nome} Item={items} />
                         )
                     })
                 }

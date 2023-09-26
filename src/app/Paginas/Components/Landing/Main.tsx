@@ -1,12 +1,11 @@
 "use client"
-import InputTexto from "../Login/InputTexto";
 import { useState } from "react";
-import TodoComponent from "./todoComponent/Todo";
 import AreaTodos from "./AreaTodos";
 import Modal from "./ModalInsert/Modal";
 import ITodos from "@/app/models/Todos";
 import HeaderLanding from "./header/header";
 import IITemTodo from "@/app/models/ItemTodo";
+import ModalInfos from "./ModalInfos/ModalInfos";
 export default function Main() {
 
     const [todos, setTodos] = useState<ITodos[]>([{
@@ -22,25 +21,29 @@ export default function Main() {
 
     const [openInsertModal, setOpenInsertModal] = useState(false)
     const [conteudoModal, setConteudoModal] = useState<IITemTodo | null>(null)
+    const [HandleInfoModal, setHandleInfoModal] = useState(false)
 
     function handleModal() {
         setOpenInsertModal(!openInsertModal)
     }
     
+    function HandleInfosMoldal() {
+        setHandleInfoModal(!HandleInfoModal)
+        console.log(conteudoModal)
+    }
+
     return(
-        <div className="w-full h-full flex flex-col gap-8">
+        <div className="w-full h-full flex flex-col gap-8 overflow-y-scroll overflow-x-hidden">
             <HeaderLanding buttonsFunctionAdicionar={handleModal}/>
             <div className="w-full h-full flex justify-center items-center">
-            <AreaTodos ModificarModal={setConteudoModal} setTodos={setTodos} todos={todos}/>
+                <AreaTodos handleModalInfoVisibility={setHandleInfoModal} ModificarModal={setConteudoModal} setTodos={setTodos} todos={todos}/>
             {
-                openInsertModal &&
-                <Modal ArrayTodos={todos} setTodos={setTodos} handleCloseModal={() => setOpenInsertModal(false)}/>
+                HandleInfoModal && <ModalInfos handleItemInfos={setConteudoModal} HandleComplete={setTodos} Item={conteudoModal} handleModalVisibility={setHandleInfoModal}/>
+            }
+            {
+                openInsertModal && <Modal ArrayTodos={todos} setTodos={setTodos} handleCloseModal={() => setOpenInsertModal(false)}/>
             }
             </div>
-            <button className="bg-black text-white" 
-            onClick={() => console.log(conteudoModal)}>
-                Consolar Teste
-            </button>
         </div>  
     )
 }

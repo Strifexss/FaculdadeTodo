@@ -5,14 +5,16 @@ import {motion} from "framer-motion"
 
 interface Props {
     ModificarModal: React.Dispatch<React.SetStateAction<IITemTodo | null>>;
-    Item:IITemTodo
+    Item:IITemTodo,
+    handleModalItemVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function GrupsItems({Item, ModificarModal}:Props) {
+export default function GrupsItems({Item, ModificarModal, handleModalItemVisibility}:Props) {
 
     const [complete, setComplete] = useState(false)
 
     function HandleModalInfos() {
+        handleModalItemVisibility(true)
         ModificarModal(Item)
     }
 
@@ -32,9 +34,9 @@ export default function GrupsItems({Item, ModificarModal}:Props) {
                         {Item.nome}
                     </h1>
                 </div>
-                <div onClick={() => setComplete(!complete)} 
+                <div 
                     className="flex justify-center items-center h-[2rem] w-[2rem] border-2">
-                    {   complete &&
+                    {   Item.complete &&
                         <Check color="green"/>
                     }
                 </div>

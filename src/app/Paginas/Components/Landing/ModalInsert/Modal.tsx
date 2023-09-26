@@ -27,7 +27,7 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
 
     return(
         <div 
-        className="rounded-md absolute w-[35rem] h-[25rem]  bg-white -translate-y-52 flex flex-col justify-between items-start gap-2 drop-shadow-2xl">
+        className="rounded-md absolute w-screen h-screen md:w-[35rem] md:h-[25rem] top-0 md:top-auto bg-white md:-translate-y-52 flex flex-col justify-between items-start gap-2 drop-shadow-2xl">
             <div className="w-full flex justify-between px-6 py-4">
                 <section className="flex justify-center items-center gap-2">
                     <Folder color="black"/>
