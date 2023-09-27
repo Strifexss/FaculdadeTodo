@@ -14,7 +14,7 @@ export default function Header({HandleCloseModal}:Props) {
                 Adicionar Items
             </h1>
         </section>
-        <XCircle onClick={() => HandleCloseModal()} 
+        <XCircle onClick={() => HandleCloseModal(false)} 
         className="cursor-pointer" color="black"/>
     </div>
     <h1 className="text-gray-400 font-semibold">
