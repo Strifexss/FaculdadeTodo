@@ -6,6 +6,7 @@ import ITodos from "@/app/models/Todos";
 import HeaderLanding from "./header/header";
 import IITemTodo from "@/app/models/ItemTodo";
 import ModalInfos from "./ModalInfos/ModalInfos";
+import ModalAddItem from "./ModalAddItem/ModalAddItem";
 export default function Main() {
 
     const [todos, setTodos] = useState<ITodos[]>([{
@@ -22,6 +23,7 @@ export default function Main() {
     const [openInsertModal, setOpenInsertModal] = useState(false)
     const [conteudoModal, setConteudoModal] = useState<IITemTodo | null>(null)
     const [HandleInfoModal, setHandleInfoModal] = useState(false)
+    const [ModalAdicionarItem, setModalAdicionarItem] = useState(false)
 
     function handleModal() {
         setOpenInsertModal(!openInsertModal)
@@ -43,7 +45,14 @@ export default function Main() {
             {
                 openInsertModal && <Modal ArrayTodos={todos} setTodos={setTodos} handleCloseModal={() => setOpenInsertModal(false)}/>
             }
+            {
+                ModalAdicionarItem && <ModalAddItem HandleCloseModal={setModalAdicionarItem}/>
+            }
             </div>
+            <button onClick={() => setModalAdicionarItem(!ModalAdicionarItem)} 
+            className="w-full bg-black text-white">
+                Teste
+            </button>
         </div>  
     )
 }

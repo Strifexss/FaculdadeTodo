@@ -44,6 +44,21 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
         }
     }
 
+    function Excluir() {
+        if (Item) {
+            HandleComplete(prevState => {
+                const novoApagado = prevState.map(
+                    x => ({
+                        ...x,
+                        grupo: x.grupo.filter(y => y.nome !== Item.nome)
+                    })
+                );
+                console.log(novoApagado);
+                return novoApagado;
+            });
+        }
+        handleModalVisibility(false)
+    }
 
     return(
         <div className=" top-0 md:top-auto md:-translate-y-32 absolute w-screen h-screen md:w-[25rem] md:h-[35rem] bg-white drop-shadow-2xl flex flex-col p-6 gap-4">
@@ -76,7 +91,8 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
             </button>
             </div>
             <div>
-            <button className={`w-full h-[2.5rem] bg-red-600 text-white font-bold`}>
+            <button onClick={() => Excluir()} 
+                className={`w-full h-[2.5rem] bg-red-600 text-white font-bold`}>
                Apagar
             </button>
             </div>
