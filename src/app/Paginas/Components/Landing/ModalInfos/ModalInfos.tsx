@@ -64,7 +64,7 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
         <div className=" top-0 md:top-auto md:-translate-y-32 absolute w-screen h-screen md:w-[25rem] md:h-[35rem] bg-white drop-shadow-2xl flex flex-col p-6 gap-4">
             <Header titulo={Item && Item.nome} handleModalVisibility={handleModalVisibility}/>
             <h1 className="text-gray-400 font-semibold">
-                27/05/2003
+                {Item && Item.data}
             </h1>
             <div className="w-full h-full flex flex-col gap-2 items-start">
                 <h1 className="font-semibold">
@@ -72,7 +72,7 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
                 </h1>
                 <section className="w-full h-full bg-gray-100 rounded-2xl p-6 overflow-scroll">
                     <h1 className="font-medium">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed quae debitis velit incidunt maiores saepe, quas at iusto neque libero ipsa cumque explicabo a repellendus error corrupti quam sint tempore?
+                        {Item && Item.Conteudo}
                     </h1>
                 </section>
             </div>

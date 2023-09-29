@@ -24,21 +24,17 @@ export default function Main() {
     const [conteudoModal, setConteudoModal] = useState<IITemTodo | null>(null)
     const [HandleInfoModal, setHandleInfoModal] = useState(false)
     const [ModalAdicionarItem, setModalAdicionarItem] = useState(false)
+    const [nomeTodoToADD, setNomeTodoToAdd] = useState<string>("")
 
     function handleModal() {
         setOpenInsertModal(!openInsertModal)
     }
     
-    function HandleInfosMoldal() {
-        setHandleInfoModal(!HandleInfoModal)
-        console.log(conteudoModal)
-    }
-
     return(
         <div className="w-full h-full flex flex-col gap-8 overflow-y-scroll overflow-x-hidden">
             <HeaderLanding buttonsFunctionAdicionar={handleModal}/>
             <div className="w-full h-full flex justify-center items-center">
-                <AreaTodos handleModalInfoVisibility={setHandleInfoModal} ModificarModal={setConteudoModal} setTodos={setTodos} todos={todos}/>
+                <AreaTodos handleModalAddVisibility={setModalAdicionarItem} setNomeTodoToADD={setNomeTodoToAdd} handleModalInfoVisibility={setHandleInfoModal} ModificarModal={setConteudoModal} setTodos={setTodos} todos={todos}/>
             {
                 HandleInfoModal && <ModalInfos handleItemInfos={setConteudoModal} HandleComplete={setTodos} Item={conteudoModal} handleModalVisibility={setHandleInfoModal}/>
             }
@@ -46,13 +42,9 @@ export default function Main() {
                 openInsertModal && <Modal ArrayTodos={todos} setTodos={setTodos} handleCloseModal={() => setOpenInsertModal(false)}/>
             }
             {
-                ModalAdicionarItem && <ModalAddItem HandleCloseModal={setModalAdicionarItem}/>
+                ModalAdicionarItem && <ModalAddItem setTodos={setTodos} NomeTodoToAdd={nomeTodoToADD} HandleCloseModal={setModalAdicionarItem}/>
             }
             </div>
-            <button onClick={() => setModalAdicionarItem(!ModalAdicionarItem)} 
-            className="w-full bg-black text-white">
-                Teste
-            </button>
         </div>  
     )
 }

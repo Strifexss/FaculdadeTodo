@@ -12,20 +12,19 @@ interface Props {
     ModificarModal: React.Dispatch<React.SetStateAction<IITemTodo | null>>;
     ArrayTodos?: ITodos[],
     handleModalInfoVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+    handleModalAddVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+    setNomeTodoToADD: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function TodoComponent({Item, setTodos, ModificarModal, handleModalInfoVisibility}:Props) {
-
-    function add() {
-        const novoObjeto: IITemTodo = {
-            nome: "Adicionou!",
-            complete: false,
-            data: "asdasd"
-        }
-        adicionarNovoObjeto({nomeTodo: Item.nome, novoObjeto, setTodos});
-    }
+export default function TodoComponent({handleModalAddVisibility, Item, ModificarModal, handleModalInfoVisibility, setNomeTodoToADD, setTodos}:Props) {
 
     const ExcluirGrupo = () => useExcluirGrupo({nomeTodo: Item.nome, setTodos: setTodos})
+    
+    const handleAddButton = () => {
+        handleModalAddVisibility(true)
+        setNomeTodoToADD(Item.nome)
+    }
+
 
     return(
         <motion.div 
@@ -49,9 +48,9 @@ export default function TodoComponent({Item, setTodos, ModificarModal, handleMod
                 }
             </div>
             <div className="w-full h-[4rem] bg-gray-200 flex justify-end items-center gap-6 px-4">
-                <button onClick={() => add()}  
+                <button
                     className="bg-AzulPadrao w-[4rem] h-[2rem] flex justify-center items-center rounded-md">
-                <Plus 
+                <Plus onClick={() => handleAddButton()}
                     color="white" 
                     className="rounded-[50%] border-2 border-AzulPadrao "/>
                 </button>

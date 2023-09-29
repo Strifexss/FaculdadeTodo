@@ -2,14 +2,40 @@ import InputTexto from "../../Login/InputTexto"
 import Header from "./Header"
 import {motion} from "framer-motion"
 import { useMediaQuery } from 'react-responsive';
+import TextArea from "./TextArea";
+import ButtonsArea from "./ButtonsArea";
+import IITemTodo from "@/app/models/ItemTodo";
+import adicionarNovoObjeto from "@/app/hooks/TodoComponent/useAdicionarNovoItem";
+import ITodos from "@/app/models/Todos";
+import { useState } from "react";
 
 interface Props {
     HandleCloseModal: React.Dispatch<React.SetStateAction<boolean>>;
+    NomeTodoToAdd: string,
+    setTodos: React.Dispatch<React.SetStateAction<ITodos[]>>;
 }
 
-export default function ModalAddItem({HandleCloseModal}:Props) {
+export default function ModalAddItem({HandleCloseModal, NomeTodoToAdd, setTodos}:Props) {
+
+    const [titulo, setTitulo] = useState<string>("")
+    const [data, setData] = useState<string>("")
+    const [conteudo, setConteudo] = useState<string>("")
 
     const isMobile = useMediaQuery({ maxWidth: 640 });
+    
+    const HandleTitulo = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTitulo(event.target.value)
+        console.log(titulo)
+    }
+    const HandleData = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setData(event.target.value)
+        console.log(data)
+    }
+    const HandleConteudo = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setConteudo(event.target.value)
+        console.log(conteudo)
+    }
+    
 
     return(
         <motion.div 
@@ -18,24 +44,8 @@ export default function ModalAddItem({HandleCloseModal}:Props) {
         transition={{duration: 0.2}}
         className="p-6 top-0 md:top-auto w-screen h-screen md:w-[25rem] md:min-h-[35rem] md:h-auto bg-white drop-shadow-2xl absolute flex flex-col items-start gap-2">
             <Header HandleCloseModal={HandleCloseModal}/>
-            <div className="mt-5 mb-6 w-full h-full flex flex-col gap-4">
-                <InputTexto LabelColor="Black" Nome="Titulo" Tamanho="full" placeholder="Insira o Titulo Aqui" />
-                <InputTexto LabelColor="Black" Nome="Data" Tamanho="full" placeholder="Insira o Titulo Aqui" />
-                <label className="font-semibold" htmlFor="TextoConteudo">
-                    Conteudo
-                </label>
-                <textarea id="TextoConteudo" 
-                    className="w-full h-[6rem] p-4 bg-gray-100"
-                />
-            </div>
-            <section className="w-full flex items-center justify-around gap-2">
-                <button className="w-full h-[2.5rem] text-white font-semibold bg-green-500">
-                    Adicionar
-                </button>
-                <button className="w-full h-[2.5rem] text-white font-semibold bg-red-500">
-                    Cancelar
-                </button>
-            </section>
+            <TextArea setConteudo={HandleConteudo} setTitulo={HandleTitulo} setData={HandleData}/>
+            <ButtonsArea ConteudoToAdd={conteudo} handleCancel={HandleCloseModal} DataToADD={data} TituloToADD={titulo} handleModalAddVisibility={HandleCloseModal} NomeTodoToAdd={NomeTodoToAdd} setTodos={setTodos}/>
         </motion.div>
     )
 }

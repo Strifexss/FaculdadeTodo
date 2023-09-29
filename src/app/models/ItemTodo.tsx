@@ -1,5 +1,6 @@
 export default interface IITemTodo {
         nome: string,
         data: string,
-        complete: boolean
+        complete: boolean,
+        Conteudo?: string,
 }

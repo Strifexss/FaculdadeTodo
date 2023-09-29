@@ -11,7 +11,6 @@ interface Props {
 
 export default function GrupsItems({Item, ModificarModal, handleModalItemVisibility}:Props) {
 
-    const [complete, setComplete] = useState(false)
 
     function HandleModalInfos() {
         handleModalItemVisibility(true)
