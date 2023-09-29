@@ -61,8 +61,9 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
     }
 
     return(
-        <div className=" top-0 md:top-auto md:-translate-y-32 absolute w-screen h-screen md:w-[25rem] md:h-[35rem] bg-white drop-shadow-2xl flex flex-col p-6 gap-4">
+        <div className=" top-0 md:top-auto md:-translate-y-32 absolute w-screen h-screen md:w-[25rem] md:h-[35rem] bg-white drop-shadow-2xl flex flex-col gap-2">
             <Header titulo={Item && Item.nome} handleModalVisibility={handleModalVisibility}/>
+            <section className="flex flex-col p-6 gap-4 w-full h-full">
             <h1 className="text-gray-400 font-semibold">
                 {Item && Item.data}
             </h1>
@@ -96,6 +97,7 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
                Apagar
             </button>
             </div>
+            </section>
         </div>
     )
 }

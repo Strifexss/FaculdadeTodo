@@ -7,16 +7,16 @@ interface Props {
 
 export default function Header({handleModalVisibility, titulo}:Props) {
     return(
-        <div className="w-full flex justify-between items-center">
+        <div className="w-full h-[10rem] md:h-[5rem] flex justify-between items-center bg-AzulPadrao p-6 rounded-bl-[3rem]">
             <div className="flex justify-center items-center gap-2">
-                <File color="black"/>
-                <h1 className="font-semibold text-[1.2rem] ">
+                <File color="white"/>
+                <h1 className="font-semibold text-[1.2rem] text-white">
                     {titulo}
                 </h1>
             </div>
                 <X  onClick={() => handleModalVisibility(false)}
                     className="cursor-pointer"
-                    color="black"/>
+                    color="white"/>
         </div>
     )
 }

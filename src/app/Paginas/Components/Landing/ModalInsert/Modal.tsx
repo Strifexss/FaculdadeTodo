@@ -27,24 +27,23 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
 
     return(
         <div 
-        className="rounded-md absolute w-screen h-screen md:w-[35rem] md:h-[25rem] top-0 md:top-auto bg-white md:-translate-y-52 flex flex-col justify-between items-start gap-2 drop-shadow-2xl">
-            <div className="w-full flex justify-between px-6 py-4">
+        className="rounded-md absolute w-full h-full md:w-[35rem] md:h-auto top-0 md:top-auto bg-white md:-translate-y-52 flex flex-col items-start gap-16 drop-shadow-2xl">
+            <div className="w-full h-[10rem] md:h-[5rem] flex justify-between px-6 py-4 bg-AzulPadrao rounded-bl-[3rem]">
                 <section className="flex justify-center items-center gap-2">
-                    <Folder color="black"/>
-                    <h1 className="text-[black] font-semibold">
+                    <Folder color="white"/>
+                    <h1 className="text-white font-bold md:font-semibold">
                         Adicionar Novo Grupo
                     </h1>
                 </section>
-                <button onClick={handleCloseModal} 
-                    className="text-black bg-white">
-                    <X color="black"/>
+                <button onClick={handleCloseModal}>
+                    <X color="white"/>
                 </button>
             </div>
             <div className="w-full px-6">
                 <InputTexto LabelColor="Black" Tamanho="full" Nome="Nome do Grupo" handleChangeValue={handleChange} placeholder="Insira o nome do Grupo"/>
             </div>
-            <div className="w-full h-[5rem] bg-gray-200 flex justify-end items-center px-6">
-                <button className="text-white h-[3rem] font-bold p-2 rounded-md bg-AzulPadrao" onClick={() => Adicionar()}>
+            <div className="w-full h-[5rem] md:bg-gray-200 flex md:justify-end items-center px-6">
+                <button className="text-white w-full md:w-auto h-[3rem] font-bold p-2 rounded-md bg-AzulPadrao" onClick={() => Adicionar()}>
                     <h1>Adicionar</h1>
                 </button>
             </div>

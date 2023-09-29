@@ -48,9 +48,9 @@ export default function TodoComponent({handleModalAddVisibility, Item, Modificar
                 }
             </div>
             <div className="w-full h-[4rem] bg-gray-200 flex justify-end items-center gap-6 px-4">
-                <button
+                <button onClick={() => handleAddButton()}
                     className="bg-AzulPadrao w-[4rem] h-[2rem] flex justify-center items-center rounded-md">
-                <Plus onClick={() => handleAddButton()}
+                <Plus 
                     color="white" 
                     className="rounded-[50%] border-2 border-AzulPadrao "/>
                 </button>

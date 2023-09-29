@@ -7,7 +7,7 @@ export default function TextArea() {
     const Logar = RotaLanding()
 
     return(
-        <div className="bg-BrancoBg drop-shadow-xl w-screen h-screen md:w-[25%] md:h-auto rounded-md flex flex-col items-center  justify-center gap-2  ">
+        <div className="bg-BrancoBg drop-shadow-xl w-full h-full md:w-[30%] 2xl:w-[25%] md:h-auto rounded-md flex flex-col items-center  justify-center gap-2  ">
                 <header
                 className="w-full h-[20rem] md:h-[10rem] flex justify-center items-center bg-AzulPadrao rounded-bl-[5rem]"
                 >
