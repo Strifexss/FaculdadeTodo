@@ -15,7 +15,8 @@ export default function Main() {
             {
                 nome: "Meet Ema",
                 data: "27/05/2023",
-                complete: true
+                complete: true,
+                Conteudo: "Conteudo aqui"
             }
         ]
     }])
