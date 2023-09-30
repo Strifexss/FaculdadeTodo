@@ -3,6 +3,7 @@ import Header from "./Header"
 import IITemTodo from "@/app/models/ItemTodo";
 import ITodos from "@/app/models/Todos";
 import {motion} from "framer-motion"
+import { useMediaQuery } from "react-responsive";
 
 interface Props {
     handleModalVisibility: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,6 +14,8 @@ interface Props {
 
 
 export default function ModalInfos({handleModalVisibility, Item, HandleComplete, handleItemInfos}:Props) {
+
+    const isMobile = useMediaQuery({ maxWidth: 640 });
 
     function Complete() {
         if (Item) {
@@ -61,7 +64,11 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
     }
 
     return(
-        <div className=" top-0 md:top-auto md:-translate-y-32 absolute w-screen h-screen md:w-[25rem] md:h-[35rem] bg-white drop-shadow-2xl flex flex-col gap-2">
+        <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: -50 }}
+            animate={{ opacity: 1, scale: 1, y: isMobile ? 0 : -150 }}
+            transition={{duration: 0.2}}
+             className=" top-0 md:top-auto md:-translate-y-32 absolute w-screen h-screen md:w-[25rem] md:h-[35rem] bg-white drop-shadow-2xl flex flex-col gap-2">
             <Header titulo={Item && Item.nome} handleModalVisibility={handleModalVisibility}/>
             <section className="flex flex-col p-6 gap-4 w-full h-full">
             <h1 className="text-gray-400 font-semibold">
@@ -98,6 +105,6 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
             </button>
             </div>
             </section>
-        </div>
+        </motion.div>
     )
 }

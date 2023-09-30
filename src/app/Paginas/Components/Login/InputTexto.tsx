@@ -3,7 +3,7 @@ interface Props {
     Escuro?: boolean,
     handleChangeValue?: (event: React.ChangeEvent<HTMLInputElement>) => void,
     Tamanho: "full" | "Compacto",
-    Nome: string,
+    Nome?: string,
     LabelColor: "Black" | "White"
 }
 

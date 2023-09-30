@@ -6,20 +6,18 @@ interface Props {
 
 export default function Header({HandleCloseModal}:Props) {
     return(
-        <div className="w-full">
+        <div className="w-full h-[10rem] md:h-[5rem] bg-AzulPadrao rounded-bl-[3rem] flex justify-center items-center px-6">
         <div className="w-full flex justify-between items-center">
         <section className="flex gap-2">
-            <CopyPlusIcon color="black" />
-            <h1 className="font-semibold">
+            <CopyPlusIcon color="white" />
+            <h1 className="font-semibold text-white">
                 Adicionar Items
             </h1>
         </section>
         <XCircle onClick={() => HandleCloseModal(false)} 
-        className="cursor-pointer" color="black"/>
+        className="cursor-pointer" color="white"/>
     </div>
-    <h1 className="text-gray-400 font-semibold">
-        Adiciona um Item ao Grupo
-    </h1>
+    
     </div>
     )
 }

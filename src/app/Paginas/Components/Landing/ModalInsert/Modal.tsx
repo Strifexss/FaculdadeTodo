@@ -3,6 +3,8 @@ import InputTexto from "../../Login/InputTexto";
 import { useState } from "react";
 import { X, Folder } from "lucide-react";
 import handleTextChange from "@/app/hooks/TodoComponent/useAdicionarNovoGrupo";
+import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 
 interface Props {
     handleCloseModal: () => void,
@@ -12,6 +14,7 @@ interface Props {
 
 export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
 
+    const isMobile = useMediaQuery({ maxWidth: 640 });
     const [TodoUsuario, setTodoUsuario] = useState<ITodos | null>(null)
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,8 +29,11 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
     }
 
     return(
-        <div 
-        className="rounded-md absolute w-full h-full md:w-[35rem] md:h-auto top-0 md:top-auto bg-white md:-translate-y-52 flex flex-col items-start gap-16 drop-shadow-2xl">
+        <motion.div
+        initial={{ opacity: 0, scale: 0.8, y: -50 }}
+        animate={{ opacity: 1, scale: 1, y: isMobile ? 0 : -200 }}
+        transition={{duration: 0.2}} 
+        className="rounded-md absolute w-full h-full md:w-[35rem] md:h-auto top-0 md:top-auto bg-white md:-translate-y-60 flex flex-col items-start gap-16 drop-shadow-2xl">
             <div className="w-full h-[10rem] md:h-[5rem] flex justify-between px-6 py-4 bg-AzulPadrao rounded-bl-[3rem]">
                 <section className="flex justify-center items-center gap-2">
                     <Folder color="white"/>
@@ -47,6 +53,6 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
                     <h1>Adicionar</h1>
                 </button>
             </div>
-        </div>
+        </motion.div>
     )
 }
