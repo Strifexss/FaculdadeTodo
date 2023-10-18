@@ -1,7 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-
+import { store } from './store'
+import { Provider } from 'react-redux'
+import { Providers } from './providers'
 const montserrat = Montserrat({ subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", '800', "900"] })
 
 export const metadata: Metadata = {
@@ -16,7 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>{children}</body>
+      <body className={montserrat.className}>
+        <Providers>
+        {children}
+        </Providers>
+        </body>
     </html>
   )
 }

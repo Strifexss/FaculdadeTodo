@@ -39,9 +39,9 @@ export default function ModalAddItem({HandleCloseModal, NomeTodoToAdd, setTodos}
 
     return(
         <motion.div 
-        initial={{ opacity: 0, scale: 0.8, y: -50 }}
-        animate={{ opacity: 1, scale: 1, y: isMobile ? 0 : -150 }}
-        transition={{duration: 0.2}}
+            initial={{ opacity: 0, scale: 0.8, y: -50 }}
+            animate={{ opacity: 1, scale: 1, y: isMobile ? 0 : -150 }}
+            transition={{duration: 0.2}}
         className="top-0 md:top-auto w-screen h-screen md:w-[25rem] md:min-h-[35rem] md:h-auto bg-white drop-shadow-2xl absolute flex flex-col items-start gap-2">
             <Header HandleCloseModal={HandleCloseModal}/>
             <div className="px-6">
