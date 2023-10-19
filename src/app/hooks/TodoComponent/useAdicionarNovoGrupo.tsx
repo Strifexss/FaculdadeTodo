@@ -7,7 +7,8 @@ export default function handleTextChange (event: React.ChangeEvent<HTMLInputElem
         grupo: [{
             nome: "teste",
             data: "!23123",
-            complete: false
+            complete: false,
+            id:0 
         }]
      };
     setTodoUsuario(NovoGrupo);
