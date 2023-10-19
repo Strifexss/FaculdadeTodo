@@ -20,7 +20,7 @@ export default function RootLayout({
             <BellDotIcon className="cursor-pointer" 
               color="#0068FF" width={30} height={30} onClick={() => setShowNotificationModal(!showNotificationModal)}/>
               { showNotificationModal &&
-                <NotificationModal/>
+                <NotificationModal HandleCloseModal={setShowNotificationModal}/>
               }
             <LucideGanttChartSquare color="#0068FF" width={30} height={30}/>
           </section>

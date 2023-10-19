@@ -1,6 +1,8 @@
+import { IDIncrement } from "@/app/features/IDITems/IDItemsSlice";
 import adicionarNovoObjeto from "@/app/hooks/TodoComponent/useAdicionarNovoItem";
 import IITemTodo from "@/app/models/ItemTodo";
 import ITodos from "@/app/models/Todos";
+import { useDispatch, useSelector } from "react-redux";
 
 interface Props {
     NomeTodoToAdd: string,
@@ -14,12 +16,18 @@ interface Props {
 
 export default function ButtonsArea({ConteudoToAdd, handleCancel, DataToADD, TituloToADD, handleModalAddVisibility, NomeTodoToAdd, setTodos}:Props) {
 
+    const idState = useSelector((state: {ID: number}) => state.ID)
+    const dispatch = useDispatch()
+
     function add() {
+        dispatch(IDIncrement())
+        console.log(idState)
         const novoObjeto: IITemTodo = {
             nome: TituloToADD,
             complete: false,
             data: DataToADD,
-            Conteudo: ConteudoToAdd
+            Conteudo: ConteudoToAdd,
+            id: idState
         }
         console.log(novoObjeto)
         adicionarNovoObjeto({nomeTodo: NomeTodoToAdd, novoObjeto, setTodos});

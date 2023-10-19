@@ -53,7 +53,7 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
                 const novoApagado = prevState.map(
                     x => ({
                         ...x,
-                        grupo: x.grupo.filter(y => y.nome !== Item.nome)
+                        grupo: x.grupo.filter(y => y.id !== Item.id)
                     })
                 );
                 console.log(novoApagado);

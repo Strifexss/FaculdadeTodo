@@ -1,8 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from '@/app/features/counter/counterSlice/counterSlice'
+import NotificationReducer from '@/app/features/Notifications/NotificiationSlice/NotificationSlices'
+import IDReducer from '@/app/features/IDITems/IDItemsSlice'
+
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    Notification: NotificationReducer,
+    ID: IDReducer
   },
 })
 
