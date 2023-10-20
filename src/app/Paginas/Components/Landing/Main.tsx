@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AreaTodos from "./AreaTodos";
 import Modal from "./ModalAdicionarGrupo/Modal";
 import ITodos from "@/app/models/Todos";
@@ -22,6 +22,12 @@ export default function Main() {
         ]
     }])
 
+    const [pesquisar, setPesquisar] = useState(todos)
+
+    useEffect(() => {
+        setPesquisar(todos)
+    },[todos])
+
     const [openInsertModal, setOpenInsertModal] = useState(false)
     const [conteudoModal, setConteudoModal] = useState<IITemTodo | null>(null)
     const [HandleInfoModal, setHandleInfoModal] = useState(false)
@@ -34,9 +40,9 @@ export default function Main() {
     
     return(
         <div className="w-full h-full flex flex-col gap-8 overflow-y-scroll overflow-x-hidden">
-            <HeaderLanding buttonsFunctionAdicionar={handleModal}/>
+            <HeaderLanding setPesquisar={setPesquisar} PesquisarTodos={pesquisar} TodoOriginal={todos} buttonsFunctionAdicionar={handleModal}/>
             <div className="w-full h-full flex justify-center items-center">
-                <AreaTodos handleModalAddVisibility={setModalAdicionarItem} setNomeTodoToADD={setNomeTodoToAdd} handleModalInfoVisibility={setHandleInfoModal} ModificarModal={setConteudoModal} setTodos={setTodos} todos={todos}/>
+                <AreaTodos handleModalAddVisibility={setModalAdicionarItem} setNomeTodoToADD={setNomeTodoToAdd} handleModalInfoVisibility={setHandleInfoModal} ModificarModal={setConteudoModal} setTodos={setTodos} todos={pesquisar}/>
             {
                 HandleInfoModal && <ModalInfos handleItemInfos={setConteudoModal} HandleComplete={setTodos} Item={conteudoModal} handleModalVisibility={setHandleInfoModal}/>
             }

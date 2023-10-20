@@ -5,6 +5,9 @@ import { X, Folder } from "lucide-react";
 import useAdicionarGrupo from "@/app/hooks/TodoComponent/useAdicionarNovoGrupo";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
+import { useDispatch } from "react-redux";
+import { addNotification,INotification } from "@/app/features/Notifications/NotificiationSlice/NotificationSlices";
+import { handleHasNotification } from "@/app/features/Notifications/NotificiationSlice/hasNotificationSlices";
 
 interface Props {
     handleCloseModal: () => void,
@@ -17,13 +20,20 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
     const isMobile = useMediaQuery({ maxWidth: 640 });
     const [TodoUsuario, setTodoUsuario] = useState<ITodos | null>(null)
     const [erroGrupoExiste, setErroGrupoExiste] = useState(false)
+    const dispatch = useDispatch()
 
     const HandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        
         useAdicionarGrupo(event, setTodoUsuario);
+        
       }
     
     const Adicionar = () => {
         const VerificarGrupoExistente = ArrayTodos.some(Todos => Todos.nome === TodoUsuario?.nome)
+        const newNotification:INotification = {
+            Mensagem: `Novo grupo adicionado: ${TodoUsuario?.nome}`,
+            hora: 20
+        }
         console.log(VerificarGrupoExistente)
         if (VerificarGrupoExistente){
             return (
@@ -37,6 +47,8 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
             if(TodoUsuario !== null) {
                 setTodos(prevState => [...prevState, TodoUsuario]);
                 handleCloseModal()
+                dispatch(addNotification(newNotification))
+                dispatch(handleHasNotification())
             }
     }
         
@@ -71,7 +83,8 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
                 </section>
             </div>
             <div className="w-full h-[5rem] md:bg-gray-200 flex md:justify-end items-center px-6">
-                <button className="text-white w-full md:w-auto h-[3rem] font-bold p-2 rounded-md bg-AzulPadrao" onClick={() => Adicionar()}>
+                <button className="text-white w-full md:w-auto h-[3rem] font-bold p-2 rounded-md bg-AzulPadrao" 
+                onClick={() => Adicionar()}>
                     <h1>Adicionar</h1>
                 </button>
             </div>

@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import { addNotification, INotification } from "@/app/features/Notifications/NotificiationSlice/NotificationSlices";
+import { useSelector } from "react-redux";
+import { INotification } from "@/app/features/Notifications/NotificiationSlice/NotificationSlices";
 import { SetStateAction } from "react";
 import { X } from "lucide-react";
 
@@ -10,19 +10,10 @@ interface Props {
 export default function NotificationModal(Props:Props) {
 
     const notificationState = useSelector((state: { Notification: INotification[] }) => state.Notification);
-    const dispatch = useDispatch()
-     
-    function Testar() {
-        const newUser:INotification = {
-            hora:0,
-            Mensagem: "Notificacao Adicionada"
-        }
-        dispatch(addNotification(newUser))
-        console.log(notificationState)
-      }
-
+    const notificationsInvertidas = [...notificationState].reverse();
+   
     return(
-        <div onClick={() => Testar()} 
+        <div
         className="w-[20rem] rounded-2xl h-[15rem] flex flex-col absolute bg-BrancoBg drop-shadow-2xl translate-x-12 -translate-y-60">
             <header className="w-full bg-AzulPadrao h-[3rem] rounded-t-2xl flex justify-between items-center p-2">
                 <h1 className="text-[white] font-bold">
@@ -33,7 +24,7 @@ export default function NotificationModal(Props:Props) {
             </header>
             <div className="w-full h-full gap-2 overflow-y-scroll flex flex-col">
             {
-                notificationState.map(x => {
+                notificationsInvertidas.map(x => {
                     return(
                         <div key={x.Mensagem} 
                         className="w-full h-[3rem] flex flex-col px-4">
