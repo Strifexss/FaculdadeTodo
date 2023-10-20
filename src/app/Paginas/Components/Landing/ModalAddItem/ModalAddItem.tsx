@@ -1,11 +1,8 @@
-import InputTexto from "../../Login/InputTexto"
 import Header from "./Header"
 import {motion} from "framer-motion"
 import { useMediaQuery } from 'react-responsive';
 import TextArea from "./TextArea";
 import ButtonsArea from "./ButtonsArea";
-import IITemTodo from "@/app/models/ItemTodo";
-import adicionarNovoObjeto from "@/app/hooks/TodoComponent/useAdicionarNovoItem";
 import ITodos from "@/app/models/Todos";
 import { useState } from "react";
 

@@ -10,6 +10,7 @@ interface Props {
 export default function NotificationModal(Props:Props) {
 
     const notificationState = useSelector((state: { Notification: INotification[] }) => state.Notification);
+    const notificationsInvertidas = [...notificationState].reverse();
    
     return(
         <div
@@ -23,7 +24,7 @@ export default function NotificationModal(Props:Props) {
             </header>
             <div className="w-full h-full gap-2 overflow-y-scroll flex flex-col">
             {
-                notificationState.map(x => {
+                notificationsInvertidas.map(x => {
                     return(
                         <div key={x.Mensagem} 
                         className="w-full h-[3rem] flex flex-col px-4">

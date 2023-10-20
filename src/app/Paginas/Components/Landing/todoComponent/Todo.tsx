@@ -1,7 +1,6 @@
 import ITodos from "@/app/models/Todos"
 import GrupsItems from "./GrupItems"
 import IITemTodo from "@/app/models/ItemTodo"
-import adicionarNovoObjeto from "@/app/hooks/TodoComponent/useAdicionarNovoItem";
 import {Trash, Plus} from "lucide-react"
 import useExcluirGrupo from "@/app/hooks/TodoComponent/setExcluirGrupo";
 import {motion} from "framer-motion"
