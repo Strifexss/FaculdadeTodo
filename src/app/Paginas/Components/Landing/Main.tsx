@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
 import AreaTodos from "./AreaTodos";
-import Modal from "./ModalInsert/Modal";
+import Modal from "./ModalAdicionarGrupo/Modal";
 import ITodos from "@/app/models/Todos";
 import HeaderLanding from "./header/header";
 import IITemTodo from "@/app/models/ItemTodo";

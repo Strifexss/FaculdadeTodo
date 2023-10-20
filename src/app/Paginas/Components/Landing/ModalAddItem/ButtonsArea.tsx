@@ -35,7 +35,7 @@ export default function ButtonsArea({ConteudoToAdd, handleCancel, DataToADD, Tit
     }
 
     return(
-        <section className="w-full p-6 flex items-center justify-around gap-2">
+        <section className="w-full p-6 flex items-center justify-around gap-2 bg-gray-200">
                 <button onClick={add} 
                 className="w-full h-[2.5rem] text-white font-semibold bg-green-500">
                     Adicionar

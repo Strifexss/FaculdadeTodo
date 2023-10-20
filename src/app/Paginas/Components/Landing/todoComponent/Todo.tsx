@@ -33,11 +33,11 @@ export default function TodoComponent({handleModalAddVisibility, Item, Modificar
         transition={{duration: 0.2}}
         exit={{scale: 0.5}}
         className="w-[20rem] h-[30rem] bg-white rounded-xl flex flex-col items-center cursor-pointer shadow-xl">
-            <div className="w-full h-[5rem] bg-AzulPadrao rounded-t-xl flex justify-between items-center px-6">
-                <h1 className="text-white text-[1.2rem] font-semibold">
+            <header className="w-full h-[5rem] bg-AzulPadrao rounded-t-xl flex justify-between items-center px-6 overflow-hidden whitespace-nowrap">
+                <h1 className="text-white text-[1.2rem] font-semibold text-left">
                     <h1>{Item?.nome}</h1>
                 </h1>
-            </div>
+            </header>
             <div className="w-full h-full flex flex-col items-center overflow-y-scroll">
                 {   
                     Item.grupo.map(items => {

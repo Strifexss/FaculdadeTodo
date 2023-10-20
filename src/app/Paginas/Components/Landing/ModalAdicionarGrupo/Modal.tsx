@@ -2,7 +2,7 @@ import ITodos from "@/app/models/Todos";
 import InputTexto from "../../Login/InputTexto";
 import { useState } from "react";
 import { X, Folder } from "lucide-react";
-import handleTextChange from "@/app/hooks/TodoComponent/useAdicionarNovoGrupo";
+import useAdicionarGrupo from "@/app/hooks/TodoComponent/useAdicionarNovoGrupo";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 
@@ -16,16 +16,30 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
 
     const isMobile = useMediaQuery({ maxWidth: 640 });
     const [TodoUsuario, setTodoUsuario] = useState<ITodos | null>(null)
+    const [erroGrupoExiste, setErroGrupoExiste] = useState(false)
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        handleTextChange(event, setTodoUsuario);
+    const HandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        useAdicionarGrupo(event, setTodoUsuario);
       }
     
     const Adicionar = () => {
-        if (TodoUsuario !== null) {
-            setTodos([...ArrayTodos, TodoUsuario]); // Assuming setTodos expects an array
+        const VerificarGrupoExistente = ArrayTodos.some(Todos => Todos.nome === TodoUsuario?.nome)
+        console.log(VerificarGrupoExistente)
+        if (VerificarGrupoExistente){
+            return (
+                setErroGrupoExiste(true),
+                setTimeout(() => {
+                    setErroGrupoExiste(false)
+                }, 5000)
+                )
         }
-        handleCloseModal()
+        else {
+            if(TodoUsuario !== null) {
+                setTodos(prevState => [...prevState, TodoUsuario]);
+                handleCloseModal()
+            }
+    }
+        
     }
 
     return(
@@ -45,8 +59,16 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
                     <X color="white"/>
                 </button>
             </div>
-            <div className="w-full px-6">
-                <InputTexto LabelColor="Black" Tamanho="full" Nome="Nome do Grupo" handleChangeValue={handleChange} placeholder="Insira o nome do Grupo"/>
+            <div className="w-full px-6 flex flex-col justify-center gap-2">
+                <InputTexto Erro={erroGrupoExiste} LabelColor="Black" Tamanho="full" Nome="Nome do Grupo" handleChangeValue={HandleChange} placeholder="Insira o nome do Grupo"/>
+                <section className="w-full flex justify-start">
+                    {
+                        erroGrupoExiste &&
+                        <h1 className="text-red-500 font-semibold">
+                            Um grupo com esse nome já existe
+                        </h1>
+                    }
+                </section>
             </div>
             <div className="w-full h-[5rem] md:bg-gray-200 flex md:justify-end items-center px-6">
                 <button className="text-white w-full md:w-auto h-[3rem] font-bold p-2 rounded-md bg-AzulPadrao" onClick={() => Adicionar()}>

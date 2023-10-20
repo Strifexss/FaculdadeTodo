@@ -26,9 +26,9 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
             HandleComplete(prevState => {
                 if (prevState) {
                     return prevState.map(todo => {
-                        if (todo.grupo.some(item => item.nome === itemCompleto.nome)) {
+                        if (todo.grupo.some(Grupo => Grupo.nome === itemCompleto.nome)) {
                             const novoGrupo = todo.grupo.map(item => {
-                                if (item.nome === itemCompleto.nome) {
+                                if (item.id === itemCompleto.id) {
                                     return {...itemCompleto};
                                 }
                                 return item;

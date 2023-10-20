@@ -1,6 +1,6 @@
 import ITodos from "@/app/models/Todos";
 
-export default function handleTextChange (event: React.ChangeEvent<HTMLInputElement>, setTodoUsuario: React.Dispatch<React.SetStateAction<ITodos | null>>){
+export default function useAdicionarGrupo (event: React.ChangeEvent<HTMLInputElement>, setTodoUsuario: React.Dispatch<React.SetStateAction<ITodos | null>>){
     console.log(event.target.value);
     const NovoGrupo: ITodos = { 
         nome: event.target.value,
