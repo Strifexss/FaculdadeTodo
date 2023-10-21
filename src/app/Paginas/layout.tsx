@@ -27,7 +27,7 @@ export default function RootLayout({
           <Menu color="#0068FF" width={30} height={30}/>
           <section className="flex flex-col gap-6">
             <BellDotIcon className="cursor-pointer"  onClick={() => handleOpenNotificationModal()}
-              color={`${HasNotification ? "#ffa500" : "#0068FF" }`} width={30} height={30} />
+              color={`#0068FF`} width={30} height={30} />
               { showNotificationModal &&
                 <NotificationModal HandleCloseModal={setShowNotificationModal}/>
               }
