@@ -27,7 +27,7 @@ export default function NotificationModal(Props:Props) {
                 notificationsInvertidas.map(x => {
                     return(
                         <div key={x.Mensagem} 
-                        className="w-full h-[3rem] flex flex-col px-4">
+                        className="w-full h-auto flex flex-col py-2 px-4 hover:bg-gray-300 cursor-pointer">
                             <h1 className="text-black font-semibold">
                                 {x.Mensagem}
                             </h1>

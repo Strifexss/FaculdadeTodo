@@ -4,6 +4,9 @@ import IITemTodo from "@/app/models/ItemTodo"
 import {Trash, Plus} from "lucide-react"
 import useExcluirGrupo from "@/app/hooks/TodoComponent/setExcluirGrupo";
 import {motion} from "framer-motion"
+import { useDispatch } from "react-redux";
+import { handleHasNotification } from "@/app/features/Notifications/NotificiationSlice/hasNotificationSlices";
+import { addNotification, INotification } from "@/app/features/Notifications/NotificiationSlice/NotificationSlices";
 
 interface Props {
     Item: ITodos,
@@ -17,8 +20,19 @@ interface Props {
 
 export default function TodoComponent({handleModalAddVisibility, Item, ModificarModal, handleModalInfoVisibility, setNomeTodoToADD, setTodos}:Props) {
 
-    const ExcluirGrupo = () => useExcluirGrupo({nomeTodo: Item.nome, setTodos: setTodos})
+    const dispatch = useDispatch()
     
+    const ExcluirGrupo = () => {
+        const newNotificaion: INotification = {
+            Mensagem: `Grupo ${Item.nome} excluido!`,
+            hora: 0
+        }  
+        useExcluirGrupo({nomeTodo: Item.nome, setTodos: setTodos})
+        dispatch(addNotification(newNotificaion))
+        dispatch(handleHasNotification())
+    }
+    
+
     const handleAddButton = () => {
         handleModalAddVisibility(true)
         setNomeTodoToADD(Item.nome)

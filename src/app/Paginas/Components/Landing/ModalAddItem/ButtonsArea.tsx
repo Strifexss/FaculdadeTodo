@@ -3,6 +3,8 @@ import adicionarNovoObjeto from "@/app/hooks/TodoComponent/useAdicionarNovoItem"
 import IITemTodo from "@/app/models/ItemTodo";
 import ITodos from "@/app/models/Todos";
 import { useDispatch, useSelector } from "react-redux";
+import { addNotification, INotification } from "@/app/features/Notifications/NotificiationSlice/NotificationSlices";
+import { handleHasNotification } from "@/app/features/Notifications/NotificiationSlice/hasNotificationSlices";
 
 interface Props {
     NomeTodoToAdd: string,
@@ -20,6 +22,11 @@ export default function ButtonsArea({ConteudoToAdd, handleCancel, DataToADD, Tit
     const dispatch = useDispatch()
 
     function add() {
+        const newNotification: INotification = {
+            Mensagem: `Item ${TituloToADD} foi adicionado ao grupo ${NomeTodoToAdd}`,
+            hora: 0 
+        }
+
         dispatch(IDIncrement())
         console.log(idState)
         const novoObjeto: IITemTodo = {
@@ -31,6 +38,8 @@ export default function ButtonsArea({ConteudoToAdd, handleCancel, DataToADD, Tit
         }
         console.log(novoObjeto)
         adicionarNovoObjeto({nomeTodo: NomeTodoToAdd, novoObjeto, setTodos});
+        dispatch(addNotification(newNotification))
+        dispatch(handleHasNotification())
         handleModalAddVisibility(false)
     }
 

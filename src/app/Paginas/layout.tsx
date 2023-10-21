@@ -1,11 +1,5 @@
 "use client"
-import { Menu, BellDotIcon, LucideGanttChartSquare } from "lucide-react"
-import NotificationModal from "./Components/LayoutAside/NotificationModal"
-import {useState} from "react"
-import { useSelector } from "react-redux/es/hooks/useSelector"
-import { handleHasNoNotification } from "../features/Notifications/NotificiationSlice/hasNotificationSlices"
-import { useDispatch } from "react-redux"
-import { HasNotificationSlice } from "../features/Notifications/NotificiationSlice/hasNotificationSlices"
+import { Menu} from "lucide-react"
 import NotificationButtons from "./Components/LayoutAside/notifcationButtons/NotificationButtons"
 
 

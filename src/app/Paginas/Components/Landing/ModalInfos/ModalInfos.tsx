@@ -1,9 +1,11 @@
-import {X} from "lucide-react"
 import Header from "./Header"
 import IITemTodo from "@/app/models/ItemTodo";
 import ITodos from "@/app/models/Todos";
 import {motion} from "framer-motion"
 import { useMediaQuery } from "react-responsive";
+import { useDispatch } from "react-redux";
+import { addNotification, INotification } from "@/app/features/Notifications/NotificiationSlice/NotificationSlices";
+import { handleHasNotification } from "@/app/features/Notifications/NotificiationSlice/hasNotificationSlices";
 
 interface Props {
     handleModalVisibility: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,12 +19,12 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
 
     const isMobile = useMediaQuery({ maxWidth: 640 });
 
+    const dispatch = useDispatch()
+
     function Complete() {
         if (Item) {
-            // Cria uma cópia do objeto Item com complete invertido
             const itemCompleto = {...Item, complete: !Item.complete};
 
-            // Atualiza o estado com o item modificado
             HandleComplete(prevState => {
                 if (prevState) {
                     return prevState.map(todo => {
@@ -42,13 +44,16 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
                 return prevState;
             });
 
-            // Chama a função handleItemInfos com o novo Item
             handleItemInfos(itemCompleto);
         }
     }
 
     function Excluir() {
         if (Item) {
+            const newNotification:INotification = {
+                Mensagem: `Item ${Item.nome} excluido`,
+                hora: 0 
+            }
             HandleComplete(prevState => {
                 const novoApagado = prevState.map(
                     x => ({
@@ -57,8 +62,11 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
                     })
                 );
                 console.log(novoApagado);
+                
                 return novoApagado;
             });
+            dispatch(addNotification(newNotification))
+            dispatch(handleHasNotification)
         }
         handleModalVisibility(false)
     }
