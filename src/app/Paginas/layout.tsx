@@ -17,6 +17,7 @@ export default function RootLayout({
     const HasNotification = useSelector((state: {HasNotification:boolean}) => state.HasNotification)
 
     const handleOpenNotificationModal = () => {
+      console.log(HasNotification)
       dispatch(handleHasNoNotification())
       setShowNotificationModal(!showNotificationModal)
     }
@@ -27,7 +28,7 @@ export default function RootLayout({
           <Menu color="#0068FF" width={30} height={30}/>
           <section className="flex flex-col gap-6">
             <BellDotIcon className="cursor-pointer"  onClick={() => handleOpenNotificationModal()}
-              color={`#0068FF`} width={30} height={30} />
+              color={`${HasNotification ? "#ffa500" : "#0068FF" }`} width={30} height={30} />
               { showNotificationModal &&
                 <NotificationModal HandleCloseModal={setShowNotificationModal}/>
               }
