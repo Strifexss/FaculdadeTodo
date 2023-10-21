@@ -1,4 +1,3 @@
-import InputTexto from "./InputTexto";
 import TextArea from "./TextArea";
 
 export default function Main() {
