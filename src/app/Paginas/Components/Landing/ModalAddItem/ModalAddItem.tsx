@@ -5,6 +5,7 @@ import TextArea from "./TextArea";
 import ButtonsArea from "./ButtonsArea";
 import ITodos from "@/app/models/Todos";
 import { useState } from "react";
+import useHoraAtual from "@/app/hooks/useHoraAtual";
 
 interface Props {
     HandleCloseModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,9 +18,9 @@ export default function ModalAddItem({HandleCloseModal, NomeTodoToAdd, setTodos}
     const [titulo, setTitulo] = useState<string>("")
     const [data, setData] = useState<string>("")
     const [conteudo, setConteudo] = useState<string>("")
-
+    const [erro, setErro] = useState(false)
     const isMobile = useMediaQuery({ maxWidth: 640 });
-    
+
     const HandleTitulo = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitulo(event.target.value)
         console.log(titulo)
@@ -46,8 +47,16 @@ export default function ModalAddItem({HandleCloseModal, NomeTodoToAdd, setTodos}
                     Adiciona um Item ao Grupo
                 </h1>
             </div>
+            {
+                erro &&
+                <div className="px-6">
+                    <h1 className="text-red-500 font-semibold">
+                        Adicione um Titulo!
+                    </h1>
+                </div>
+            }
             <TextArea setConteudo={HandleConteudo} setTitulo={HandleTitulo} setData={HandleData}/>
-            <ButtonsArea ConteudoToAdd={conteudo} handleCancel={HandleCloseModal} DataToADD={data} TituloToADD={titulo} handleModalAddVisibility={HandleCloseModal} NomeTodoToAdd={NomeTodoToAdd} setTodos={setTodos}/>
+            <ButtonsArea setErro={setErro} ConteudoToAdd={conteudo} handleCancel={HandleCloseModal} DataToADD={data} TituloToADD={titulo} handleModalAddVisibility={HandleCloseModal} NomeTodoToAdd={NomeTodoToAdd} setTodos={setTodos}/>
         </motion.div>
     )
 }

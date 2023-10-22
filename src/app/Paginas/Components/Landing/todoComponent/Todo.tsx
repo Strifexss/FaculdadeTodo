@@ -7,6 +7,10 @@ import {motion} from "framer-motion"
 import { useDispatch } from "react-redux";
 import { handleHasNotification } from "@/app/features/Notifications/NotificiationSlice/hasNotificationSlices";
 import { addNotification, INotification } from "@/app/features/Notifications/NotificiationSlice/NotificationSlices";
+import ModalConfirmation from "../ModalInfos/ModalConfirmation";
+import {useState} from "react"
+import useHoraAtual from "@/app/hooks/useHoraAtual";
+
 
 interface Props {
     Item: ITodos,
@@ -21,11 +25,13 @@ interface Props {
 export default function TodoComponent({handleModalAddVisibility, Item, ModificarModal, handleModalInfoVisibility, setNomeTodoToADD, setTodos}:Props) {
 
     const dispatch = useDispatch()
-    
+    const [modalExcluirGrupo, setModalExcluirGrupo] = useState(false)
+    const hora = useHoraAtual()
+
     const ExcluirGrupo = () => {
         const newNotificaion: INotification = {
             Mensagem: `Grupo ${Item.nome} excluido!`,
-            hora: 0
+            hora: hora
         }  
         useExcluirGrupo({nomeTodo: Item.nome, setTodos: setTodos})
         dispatch(addNotification(newNotificaion))
@@ -51,6 +57,9 @@ export default function TodoComponent({handleModalAddVisibility, Item, Modificar
                     <h1>{Item?.nome}</h1>
                 </h1>
             </header>
+            {   modalExcluirGrupo &&
+                <ModalConfirmation Texto="Deseja Excluir o grupo?" FuncaoConfirmar={ExcluirGrupo} TextoButao1="Sim" TextoButao2="Não" FuncaoCancelar={() => setModalExcluirGrupo(false)} />
+            }
             <div className="w-full h-full flex flex-col items-center overflow-y-scroll">
                 {   
                     Item.grupo.map(items => {
@@ -67,7 +76,7 @@ export default function TodoComponent({handleModalAddVisibility, Item, Modificar
                     color="white" 
                     className="rounded-[50%] border-2 border-AzulPadrao "/>
                 </button>
-                <button onClick={() => ExcluirGrupo()} 
+                <button onClick={() => setModalExcluirGrupo(true)} 
                     className="bg-AzulPadrao w-[4rem] h-[2rem] flex justify-center items-center rounded-md">
                 <Trash 
                     color="white" 

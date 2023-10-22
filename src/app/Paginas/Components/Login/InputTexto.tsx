@@ -5,10 +5,11 @@ interface Props {
     Tamanho: "full" | "Compacto",
     Nome?: string,
     LabelColor: "Black" | "White",
-    Erro?: boolean
+    Erro?: boolean,
+    PasswordType?: boolean
 }
 
-export default function InputTexto({placeholder, Escuro, handleChangeValue, Tamanho, Nome, LabelColor, Erro}:Props) {
+export default function InputTexto({PasswordType = false, placeholder, Escuro, handleChangeValue, Tamanho, Nome, LabelColor, Erro}:Props) {
     
     return(
         <div className="flex flex-col gap-2">
@@ -18,7 +19,7 @@ export default function InputTexto({placeholder, Escuro, handleChangeValue, Tama
               </label>
               <input
                     id={Nome} 
-                    type="text"
+                    type={`${PasswordType ? "password" : "text"}`}
                     onChange={handleChangeValue}
                     className={`border-2 ${Tamanho == "full" ? "w-full" : "w-[25rem]"} h-[3rem] ${Escuro ? "bg-[#282834]" && "text-[white]" : "bg-[white]" && "text-[black]}"} p-2 rounded-md ${Erro && "border-red-500 border-2 outline-red-500"}`}
                     placeholder={placeholder}

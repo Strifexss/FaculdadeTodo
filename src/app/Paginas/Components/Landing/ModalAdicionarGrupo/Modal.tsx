@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import { useDispatch } from "react-redux";
 import { addNotification,INotification } from "@/app/features/Notifications/NotificiationSlice/NotificationSlices";
 import { handleHasNotification } from "@/app/features/Notifications/NotificiationSlice/hasNotificationSlices";
+import useHoraAtual from "@/app/hooks/useHoraAtual";
 
 interface Props {
     handleCloseModal: () => void,
@@ -21,6 +22,7 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
     const [TodoUsuario, setTodoUsuario] = useState<ITodos | null>(null)
     const [erroGrupoExiste, setErroGrupoExiste] = useState(false)
     const dispatch = useDispatch()
+    const hora = useHoraAtual()
 
     const HandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         
@@ -32,7 +34,7 @@ export default function Modal({handleCloseModal, setTodos, ArrayTodos}:Props) {
         const VerificarGrupoExistente = ArrayTodos.some(Todos => Todos.nome === TodoUsuario?.nome)
         const newNotification:INotification = {
             Mensagem: `Novo grupo adicionado: ${TodoUsuario?.nome}`,
-            hora: 20
+            hora: hora
         }
         console.log(VerificarGrupoExistente)
         if (VerificarGrupoExistente){

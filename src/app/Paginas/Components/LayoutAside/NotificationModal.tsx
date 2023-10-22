@@ -32,7 +32,7 @@ export default function NotificationModal(Props:Props) {
                                 {x.Mensagem}
                             </h1>
                             <h1 className="text-gray-400 font-semibold">
-                                Horario: {x.hora}
+                                às {x.hora}hrs
                             </h1>
                         </div>
                     )

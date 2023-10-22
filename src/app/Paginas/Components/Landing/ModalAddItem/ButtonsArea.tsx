@@ -5,6 +5,8 @@ import ITodos from "@/app/models/Todos";
 import { useDispatch, useSelector } from "react-redux";
 import { addNotification, INotification } from "@/app/features/Notifications/NotificiationSlice/NotificationSlices";
 import { handleHasNotification } from "@/app/features/Notifications/NotificiationSlice/hasNotificationSlices";
+import { SetStateAction } from "react";
+import useHoraAtual from "@/app/hooks/useHoraAtual";
 
 interface Props {
     NomeTodoToAdd: string,
@@ -13,18 +15,20 @@ interface Props {
     handleCancel: React.Dispatch<React.SetStateAction<boolean>>;
     TituloToADD: string,
     DataToADD: string,
-    ConteudoToAdd: string
+    ConteudoToAdd: string,
+    setErro: React.Dispatch<SetStateAction<boolean>>
 }
 
-export default function ButtonsArea({ConteudoToAdd, handleCancel, DataToADD, TituloToADD, handleModalAddVisibility, NomeTodoToAdd, setTodos}:Props) {
+export default function ButtonsArea({ConteudoToAdd, handleCancel, DataToADD, TituloToADD, handleModalAddVisibility, NomeTodoToAdd, setTodos, setErro}:Props) {
 
     const idState = useSelector((state: {ID: number}) => state.ID)
     const dispatch = useDispatch()
+    const hora = useHoraAtual()
 
     function add() {
         const newNotification: INotification = {
             Mensagem: `Item ${TituloToADD} foi adicionado ao grupo ${NomeTodoToAdd}`,
-            hora: 0 
+            hora: hora 
         }
 
         dispatch(IDIncrement())
@@ -37,10 +41,18 @@ export default function ButtonsArea({ConteudoToAdd, handleCancel, DataToADD, Tit
             id: idState
         }
         console.log(novoObjeto)
-        adicionarNovoObjeto({nomeTodo: NomeTodoToAdd, novoObjeto, setTodos});
-        dispatch(addNotification(newNotification))
-        dispatch(handleHasNotification())
-        handleModalAddVisibility(false)
+        if(TituloToADD == "") {
+            setErro(true)
+            setTimeout(() => {
+                setErro(false)
+            },5000)
+        }
+        else {
+            adicionarNovoObjeto({nomeTodo: NomeTodoToAdd, novoObjeto, setTodos});
+            dispatch(addNotification(newNotification))
+            dispatch(handleHasNotification())
+            handleModalAddVisibility(false)
+        }
     }
 
     return(

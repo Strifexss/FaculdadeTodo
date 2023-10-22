@@ -9,6 +9,7 @@ import { handleHasNotification } from "@/app/features/Notifications/Notificiatio
 import useEditarItems from "@/app/hooks/useEditarItems";
 import { useState } from "react";
 import useHoraAtual from "@/app/hooks/useHoraAtual";
+import ModalConfirmation from "./ModalConfirmation";
 
 interface Props {
     handleModalVisibility: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,7 +17,6 @@ interface Props {
     handleItemInfos: React.Dispatch<React.SetStateAction<IITemTodo | null>>;
     Item: IITemTodo | null
 }
-
 
 export default function ModalInfos({handleModalVisibility, Item, HandleComplete, handleItemInfos}:Props) {
 
@@ -29,6 +29,9 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
     const [data, setData] = useState("")
     const [Conteudo, setConteudo] = useState("")
     const [alerta, setAlerta] = useState(false)
+    const [OpenEditarModal, setOpenEditarModal] = useState(false)
+    const [ExcluirModal, setExcluirModal] = useState(false)
+
     function HandleNome(event: React.ChangeEvent<HTMLDivElement>) {
         const novoConteudo = event.target.innerText;
         setNome(novoConteudo);
@@ -112,10 +115,12 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
                 setAlerta(true)
             setTimeout(() => {
                 setAlerta(false)
-            }, 5000)        
+            }, 5000)
+            setOpenEditarModal(false)
         } else {
          
             editarItem(novasMudancas);
+            setOpenEditarModal(false)
         }
     }
 
@@ -151,7 +156,7 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
             </div>
             <div className="w-full h-auto bg-gray-200">
                 <button onClick={() => Complete()}  
-                    className={`w-full h-[2.5rem] ${Item?.complete ? "bg-green-500" : "bg-orange-400"} text-white font-bold`}>
+                    className={`w-full h-[2.5rem] ${Item?.complete ? "bg-green-500" : "bg-orange-400"} ${Item?.complete ? "hover:bg-green-700" : "hover:bg-orange-500"} text-white font-bold`}>
                     { Item?.complete ?
                     <h1>
                         Concluida
@@ -163,16 +168,24 @@ export default function ModalInfos({handleModalVisibility, Item, HandleComplete,
                 }
                 </button>
             </div>
+            {
+                OpenEditarModal &&
+                <ModalConfirmation FuncaoConfirmar={Editar} FuncaoCancelar={() => setOpenEditarModal(false)} Texto="Deseja Salvar as Alterções?" TextoButao1="Sim" TextoButao2="Não"/>
+            }
+            {
+                ExcluirModal &&
+                <ModalConfirmation FuncaoConfirmar={Excluir} FuncaoCancelar={() => setExcluirModal(false)} Texto="Deseja Excluir o Item?" TextoButao1="Sim" TextoButao2="Não"/>
+            }
             <div className="w-full">
-                <button onClick={() => Editar()} 
-                    className={`w-full h-[2.5rem] bg-red-600 text-white font-bold`}>
+                <button onClick={() => setOpenEditarModal(!OpenEditarModal)} 
+                    className={`w-full h-[2.5rem] bg-blue-500 hover:bg-blue-700 text-white font-bold`}>
                     Editar
                 </button>
             </div>
             <div className="w-full">
-                <button onClick={() => Excluir()} 
-                    className={`w-full h-[2.5rem] bg-red-600 text-white font-bold`}>
-                Apagar
+                <button onClick={() => setExcluirModal(true)} 
+                    className={`w-full h-[2.5rem] bg-red-600 hover:bg-red-700 text-white font-bold`}>
+                   Apagar
                 </button>
             </div>
             </section>

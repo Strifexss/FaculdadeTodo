@@ -1,10 +1,33 @@
 "use client"
+import { useState } from "react";
 import InputTexto from "./InputTexto";
 import { RotaLanding } from "@/app/hooks/usePaginas";
 
 export default function TextArea() {
 
-    const Logar = RotaLanding()
+    const rotaLogar = RotaLanding()
+    const [nome, setNome] = useState("")
+    const [senha, setSenha] = useState("")
+    const [alerta, setAlerta] = useState(false)
+
+    function handleNome(event:React.ChangeEvent<HTMLInputElement>) {
+        setNome(event.target.value)
+    }
+    function handleSenha(event:React.ChangeEvent<HTMLInputElement>) {
+        setSenha(event.target.value)
+    }
+
+    function Logar() {
+        if (nome !== "Usuario" && senha !== "Senha") {
+            setAlerta(true)
+            setTimeout(() => {
+                setAlerta(false)
+            },5000)
+        }
+        else {
+            rotaLogar()
+        }
+    }
 
     return(
         <div className="bg-BrancoBg drop-shadow-xl w-full h-full md:w-[30%] 2xl:w-[25%] md:h-auto rounded-md flex flex-col items-center  justify-center gap-2  ">
@@ -23,9 +46,16 @@ export default function TextArea() {
                         Login
                     </h1>
                 </div>
+               {    alerta &&
+                    <div className="w-full flex justify-start items-center font-semibold">
+                        <h1 className="text-red-500">
+                            Usuario ou Senha incorreto
+                        </h1>
+                    </div>
+                }
                 <div className="w-full flex flex-col gap-y-4">
-                    <InputTexto LabelColor="Black" Tamanho="full" Nome="Email" placeholder="Insira o seu Email"/>
-                    <InputTexto LabelColor="Black" Tamanho="full" Nome="Senha" placeholder="Insira a sua Senha"/>
+                    <InputTexto handleChangeValue={handleNome} LabelColor="Black" Tamanho="full" Nome="Usuario" placeholder="Insira o seu Usuario"/>
+                    <InputTexto PasswordType handleChangeValue={handleSenha} LabelColor="Black" Tamanho="full" Nome="Senha" placeholder="Insira a sua Senha"/>
                 </div>
                 <div className="w-full flex flex-col gap-6 justify-between items-center">
                     <button onClick={() => Logar()} 
@@ -39,4 +69,4 @@ export default function TextArea() {
             </section>
         </div>
     )
-}
+} 
