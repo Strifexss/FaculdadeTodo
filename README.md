@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+To-Do - Organize suas Tarefas com Eficiência
 
-## Getting Started
+Descrição:
+O To-Do é uma aplicação de lista de tarefas desenvolvida com tecnologias modernas como TypeScript, React, Next.js, Tailwind CSS, Redux e outras bibliotecas para oferecer uma experiência de usuário intuitiva e eficiente. Este projeto foi concebido como parte do trabalho de faculdade para demonstrar habilidades avançadas no desenvolvimento web.
 
-First, run the development server:
+Funcionalidades Destacadas:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Gestão de Tarefas Intuitiva: Adicione, edite e exclua tarefas de forma rápida e intuitiva.
+Notificações em Tempo Real: Receba notificações instantâneas quando uma tarefa é concluída ou uma nova tarefa é atribuída.
+Responsividade Aprimorada: Design adaptável para oferecer uma experiência otimizada em dispositivos móveis e desktops.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tecnologias Utilizadas:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+TypeScript: Oferece tipagem estática para um código mais robusto e escalável.
+React e Next.js: Proporcionam uma experiência de desenvolvimento rápida e oferecem recursos de SSR (Server-Side Rendering) para melhor desempenho.
+Tailwind CSS: Facilita a estilização com classes utilitárias e resulta em um design limpo e moderno.
+Redux: Gerencia o estado da aplicação para uma gestão eficiente de dados globais.
+Próximos Passos:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Implementação de funcionalidades de compartilhamento de tarefas.
+Melhoria da interface de usuário com animações e transições suaves.
+Observações Finais:
+O To-DoApp representa um esforço significativo na criação de uma aplicação robusta e de alta qualidade, demonstrando a aplicação prática de habilidades em desenvolvimento web utilizando tecnologias modernas e boas práticas de programação. Este projeto também serve como uma base sólida para futuras expansões e aprimoramentos.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Credenciais para Logar no APP: Usuario: Usuario | Senha: Senha
